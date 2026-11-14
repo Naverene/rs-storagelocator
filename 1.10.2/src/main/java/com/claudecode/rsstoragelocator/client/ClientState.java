@@ -110,14 +110,14 @@ public final class ClientState {
         if (mc.player == null) return;
         int seconds = Config.highlightSeconds;
         if (r.positions.isEmpty()) {
-            mc.player.addChatMessage(gray(new TextComponentTranslation("rsstoragelocator.nothing_to_highlight",
+            mc.player.sendMessage(gray(new TextComponentTranslation("rsstoragelocator.nothing_to_highlight",
                     r.what.name())));
             return;
         }
         highlighted = Collections.unmodifiableList(new ArrayList<>(r.positions));
         highlightedIn = mc.player.world.provider.getDimension();
         highlightedUntil = System.currentTimeMillis() + seconds * 1000L;
-        mc.player.addChatMessage(gray(new TextComponentTranslation("rsstoragelocator.highlighted",
+        mc.player.sendMessage(gray(new TextComponentTranslation("rsstoragelocator.highlighted",
                 r.positions.size(), r.what.name(), seconds)));
     }
 
