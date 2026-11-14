@@ -107,17 +107,17 @@ public final class ClientState {
         ASKED.remove(r.what);
         if (!r.highlight) return;
         Minecraft mc = Minecraft.getMinecraft();
-        if (mc.thePlayer == null) return;
+        if (mc.player == null) return;
         int seconds = Config.highlightSeconds;
         if (r.positions.isEmpty()) {
-            mc.thePlayer.addChatMessage(gray(new TextComponentTranslation("rsstoragelocator.nothing_to_highlight",
+            mc.player.addChatMessage(gray(new TextComponentTranslation("rsstoragelocator.nothing_to_highlight",
                     r.what.name())));
             return;
         }
         highlighted = Collections.unmodifiableList(new ArrayList<>(r.positions));
-        highlightedIn = mc.thePlayer.worldObj.provider.getDimension();
+        highlightedIn = mc.player.world.provider.getDimension();
         highlightedUntil = System.currentTimeMillis() + seconds * 1000L;
-        mc.thePlayer.addChatMessage(gray(new TextComponentTranslation("rsstoragelocator.highlighted",
+        mc.player.addChatMessage(gray(new TextComponentTranslation("rsstoragelocator.highlighted",
                 r.positions.size(), r.what.name(), seconds)));
     }
 
@@ -143,8 +143,8 @@ public final class ClientState {
     @Nullable
     private static What hovered() {
         Minecraft mc = Minecraft.getMinecraft();
-        if (!(mc.currentScreen instanceof GuiGrid) || mc.thePlayer == null) return null;
-        if (mc.thePlayer.inventory.getItemStack() != null) return null;
+        if (!(mc.currentScreen instanceof GuiGrid) || mc.player == null) return null;
+        if (mc.player.inventory.getItemStack() != null) return null;
         GuiGrid gui = (GuiGrid) mc.currentScreen;
         int slot = slotNumber(gui);
         List<IGridStack> stacks = GuiGrid.STACKS;
@@ -212,8 +212,8 @@ public final class ClientState {
         Minecraft mc = Minecraft.getMinecraft();
         List<BlockPos> blocks = highlighted;
         Entity view = mc.getRenderViewEntity();
-        if (blocks.isEmpty() || mc.theWorld == null || view == null) return;
-        if (System.currentTimeMillis() > highlightedUntil || mc.theWorld.provider.getDimension() != highlightedIn) {
+        if (blocks.isEmpty() || mc.world == null || view == null) return;
+        if (System.currentTimeMillis() > highlightedUntil || mc.world.provider.getDimension() != highlightedIn) {
             if (System.currentTimeMillis() > highlightedUntil) highlighted = Collections.emptyList();
             return;
         }

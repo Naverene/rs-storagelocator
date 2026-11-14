@@ -105,7 +105,7 @@ final class Locator {
         long rest = 0;
         for (int i = 0; i < hits.size(); i++) {
             Hit h = hits.get(i);
-            if (h.pos != null && h.world == p.worldObj && positions.size() < 4096) positions.add(h.pos);
+            if (h.pos != null && h.world == p.world && positions.size() < 4096) positions.add(h.pos);
             if (i >= SHOWN) {
                 rest += h.amount;
                 continue;
@@ -231,7 +231,7 @@ final class Locator {
         // A wireless grid only knows where its controller is, and in which dimension.
         BlockPos pos = grid == null ? null : grid.getNetworkPosition();
         if (pos == null) return null;
-        World world = p.worldObj;
+        World world = p.world;
         try {
             java.lang.reflect.Field f = grid.getClass().getDeclaredField("controllerDimension");
             f.setAccessible(true);
