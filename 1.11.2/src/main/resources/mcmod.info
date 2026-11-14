@@ -1,0 +1,11 @@
+[
+  {
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
+    "description": "Hover an item or fluid in a Refined Storage grid to see which disk drives and external storages hold it, and press Insert to highlight them in the world.",
+    "version": "${mod_version}",
+    "mcversion": "${minecraft_version}",
+    "authorList": ["Naverene"],
+    "dependencies": ["refinedstorage"]
+  }
+]
