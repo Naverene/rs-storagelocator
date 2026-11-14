@@ -42,14 +42,11 @@ minecraft {
 
 repositories {
     // Refined Storage from Modrinth's maven. The version is a Modrinth version id (see gradle.properties).
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = 'Modrinth'
-                url = 'https://api.modrinth.com/maven'
-            }
-        }
-        filter { includeGroup 'maven.modrinth' }
+    // Not exclusiveContent: ForgeGradle serves the deobfuscated copy under the same group from its own repository.
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content { includeGroup 'maven.modrinth' }
     }
 }
 

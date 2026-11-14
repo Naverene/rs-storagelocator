@@ -137,7 +137,7 @@ public final class ClientState {
         if (!(Minecraft.getInstance().screen instanceof AbstractGridScreen<?> screen)) return null;
         if (!screen.getMenu().getCarried().isEmpty()) return null;
         GridResource entry = screen.getCurrentGridResource();
-        return entry == null ? null : entry.getResourceForRecipeMods();
+        return entry == null ? null : entry.getAutocraftingResource();
     }
 
     private static void onTooltip(RenderTooltipEvent.GatherComponents e) {
