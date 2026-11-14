@@ -58,6 +58,16 @@ variables:
   variables: { MC_DIR: "1.12.2", JAVA: "8" }
   rules: *rules
 
+"1.14.4":
+  extends: .build
+  variables: { MC_DIR: "1.14.4", JAVA: "8" }
+  rules: *rules
+
+"1.15.2":
+  extends: .build
+  variables: { MC_DIR: "1.15.2", JAVA: "8" }
+  rules: *rules
+
 "1.16.5":
   extends: .build
   variables: { MC_DIR: "1.16.5", JAVA: "8" }
@@ -78,6 +88,11 @@ variables:
   variables: { MC_DIR: "1.20.1", JAVA: "17" }
   rules: *rules
 
+"1.20.4":
+  extends: .build
+  variables: { MC_DIR: "1.20.4", JAVA: "17" }
+  rules: *rules
+
 "1.21.1":
   extends: .build
   variables: { MC_DIR: "1.21.1", JAVA: "21" }
@@ -91,4 +106,9 @@ variables:
 "26.1.2":
   extends: .build
   variables: { MC_DIR: "26.1.2", JAVA: "25" }
+  rules: *rules
+
+"26.1.2-fabric":
+  extends: .build
+  variables: { MC_DIR: "26.1.2-fabric", JAVA: "25" }
   rules: *rules

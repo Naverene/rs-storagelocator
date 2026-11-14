@@ -12,17 +12,24 @@ This repository holds every version of the mod, one folder per Minecraft version
 | Folder | Minecraft | Loader | Refined Storage | Java |
 | --- | --- | --- | --- | --- |
 | [1.12.2](1.12.2) | 1.12.2 | Forge | 1.6.x | 8 |
+| [1.14.4](1.14.4) | 1.14.4 | Forge | 1.7.x (beta; the only 1.14.4 versions) | 8 |
+| [1.15.2](1.15.2) | 1.15.2 | Forge | 1.8.x | 8 |
 | [1.16.5](1.16.5) | 1.16.5 | Forge | 1.9.x | 8 |
 | [1.18.2](1.18.2) | 1.18.2 | Forge | 1.10.x | 17 |
 | [1.19.2](1.19.2) | 1.19.2 | Forge | 1.11.x | 17 |
 | [1.20.1](1.20.1) | 1.20.1 | Forge | 1.12.x | 17 |
+| [1.20.4](1.20.4) | 1.20.4 | NeoForge | 1.13.x (beta; the only 1.20.4 versions) | 17 |
 | [1.21.1](1.21.1) | 1.21.1 | NeoForge | 2.0.x (Refined Storage 2) | 21 |
 | [1.21.1-fabric](1.21.1-fabric) | 1.21.1 | Fabric (needs Fabric API) | 2.0.x (Refined Storage 2) | 21 |
 | [26.1.2](26.1.2) | 26.1.2 | NeoForge | 3.x (Refined Storage 2) | 25 |
+| [26.1.2-fabric](26.1.2-fabric) | 26.1.2 | Fabric (needs Fabric API) | 3.x (Refined Storage 2) | 25 |
 
 The other More Dyes versions have no Refined Storage release, so they have no folder here: 1.4.7 and 1.7.10
 (Refined Storage starts at 1.9), 1.20.1 Fabric (Refined Storage 1 is Forge only), 1.21.11 and 1.21.11 Fabric, and
 26.3.
+
+Some folders go beyond More Dyes, for the Minecraft versions Refined Storage was released for that More Dyes skips:
+1.14.4, 1.15.2, 1.20.4 and 26.1.2 Fabric.
 
 Each Minecraft folder is its own Gradle project with its own wrapper. Open the folder for the version you want in
 your IDE (not the repository root), and run `./gradlew build` inside it. The jar lands in that folder's
