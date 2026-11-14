@@ -1,0 +1,59 @@
+// Minecraft 1.10.2 Forge predates ForgeGradle 3, so this is ForgeGradle 2.3, from anatawa12's maintained fork
+// (https://github.com/anatawa12/ForgeGradle-2.3), which runs on current Gradle and Forge's current maven.
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = 'https://maven.minecraftforge.net' }
+    }
+    dependencies {
+        classpath('com.anatawa12.forge:ForgeGradle:2.3-1.0.+') {
+            changing = true
+        }
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+// The jar is named rsstoragelocator-<mod version>-<Minecraft version>-forge.jar.
+version = "${mod_version}-${minecraft_version}-forge"
+group = mod_group_id
+archivesBaseName = mod_id
+
+// Minecraft 1.10.2 runs on Java 8.
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
+}
+
+minecraft {
+    // ForgeGradle 2.3 refuses Minecraft before 1.12 unless told otherwise; set before the mappings, which it checks.
+    suppressVersionTest = true
+    version = "${minecraft_version}-${forge_version}"
+    runDir = 'run'
+    mappings = mappings_version
+    makeObfSourceJar = false
+}
+
+repositories {
+    // Refined Storage from Modrinth's maven. The version is a Modrinth version id (see gradle.properties).
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content { includeGroup 'maven.modrinth' }
+    }
+}
+
+dependencies {
+    // ForgeGradle 2 deobfuscates a dependency with deobfCompile.
+    deobfCompile("maven.modrinth:refined-storage:${rs_modrinth_version}") { transitive = false }
+}
+
+processResources {
+    def replaceProperties = [mod_id: mod_id, mod_name: mod_name, mod_version: mod_version,
+                             minecraft_version: minecraft_version]
+    inputs.properties replaceProperties
+
+    filesMatching(['mcmod.info']) {
+        expand replaceProperties
+    }
+}
