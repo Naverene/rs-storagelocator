@@ -1,0 +1,13 @@
+{
+  "key.category.rsstoragelocator.main": "RS Storage Locator",
+  "key.rsstoragelocator.highlight": "Highlight where the hovered item is stored",
+  "rsstoragelocator.locating": "Locating...",
+  "rsstoragelocator.not_stored": "Not stored on this network",
+  "rsstoragelocator.stored_in": "Stored in %s places:",
+  "rsstoragelocator.stored_in_one": "Stored in 1 place:",
+  "rsstoragelocator.more": " + %s more: %s",
+  "rsstoragelocator.disk_in": "%s in %s",
+  "rsstoragelocator.slot": "slot %s",
+  "rsstoragelocator.highlighted": "Highlighted %s places holding %s for %s seconds",
+  "rsstoragelocator.nothing_to_highlight": "%s is not stored in any block on this network"
+}
