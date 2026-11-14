@@ -1,0 +1,66 @@
+plugins {
+    // Minecraft 1.21.1 is still obfuscated, so this is Loom's remapping plugin.
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+}
+
+// The jar is named rsstoragelocator-<mod version>-<Minecraft version>-fabric.jar.
+version = "${mod_version}-${minecraft_version}-fabric"
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+// Mojang ships Java 21 to end users in 1.21.1, so the mod targets Java 21.
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+repositories {
+    // Refined Storage from Modrinth's maven. The version is a Modrinth version id (see gradle.properties).
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter { includeGroup 'maven.modrinth' }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    // Mojang's names, the same ones the NeoForge 1.21.1 build uses, so the code reads the same in both.
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    modCompileOnly("maven.modrinth:refined-storage:${rs_modrinth_version}") { transitive = false }
+}
+
+loom {
+    runs {
+        configureEach {
+            runDir = 'run'
+        }
+    }
+}
+
+processResources {
+    var replaceProperties = [
+            minecraft_version: minecraft_version, loader_version: loader_version,
+            mod_id: mod_id, mod_name: mod_name, mod_version: mod_version,
+            mod_authors: mod_authors, mod_description: mod_description,
+    ]
+    inputs.properties replaceProperties
+    filesMatching('fabric.mod.json') {
+        expand replaceProperties
+    }
+}

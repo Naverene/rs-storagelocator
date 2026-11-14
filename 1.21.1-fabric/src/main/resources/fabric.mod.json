@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "authors": ["${mod_authors}"],
+  "contact": {
+    "sources": "https://github.com/Naverene/rs-storagelocator"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.claudecode.rsstoragelocator.StorageLocator"],
+    "client": ["com.claudecode.rsstoragelocator.client.ClientState"]
+  },
+  "mixins": ["rsstoragelocator.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21",
+    "fabric-api": "*",
+    "refinedstorage": ">=2.0.0 <3"
+  }
+}
