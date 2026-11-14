@@ -19,8 +19,8 @@ final class HighlightRenderType {
     private HighlightRenderType() {
     }
 
-    /** Like the vanilla lines pipeline, with the depth test inverted. */
-    private static final RenderPipeline PIPELINE = RenderPipelines.LINES.toBuilder()
+    /** Built like the vanilla lines pipeline, with the depth test inverted. */
+    private static final RenderPipeline PIPELINE = RenderPipeline.builder(RenderPipelines.LINES_SNIPPET)
             .withLocation(Identifier.fromNamespaceAndPath(StorageLocator.MOD_ID, "pipeline/lines_behind_block"))
             .withDepthStencilState(new DepthStencilState(CompareOp.GREATER_THAN, false))
             .build();

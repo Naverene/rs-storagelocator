@@ -53,6 +53,11 @@ variables:
       compare_to: $CI_MERGE_REQUEST_DIFF_BASE_SHA
   - changes: *paths
 
+"1.10.2":
+  extends: .build
+  variables: { MC_DIR: "1.10.2", JAVA: "8" }
+  rules: *rules
+
 "1.11.2":
   extends: .build
   variables: { MC_DIR: "1.11.2", JAVA: "8" }

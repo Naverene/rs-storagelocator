@@ -26,6 +26,8 @@ compileJava {
 }
 
 minecraft {
+    // ForgeGradle 2.3 refuses Minecraft before 1.12 unless told otherwise; set before the mappings, which it checks.
+    suppressVersionTest = true
     version = "${minecraft_version}-${forge_version}"
     runDir = 'run'
     mappings = mappings_version
