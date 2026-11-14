@@ -19,7 +19,7 @@ final class HighlightRenderType extends RenderType {
     static final RenderType LINES_THROUGH_WALLS = makeType("rsstoragelocator_lines_through_walls",
             DefaultVertexFormats.POSITION_COLOR, GL11.GL_LINES, 256,
             RenderType.State.getBuilder()
-                    .line(new RenderState.LineState(OptionalDouble.of(2.0)))
+                    .line(new LineState(OptionalDouble.of(2.0)))
                     .layer(VIEW_OFFSET_Z_LAYERING)
                     .transparency(TRANSLUCENT_TRANSPARENCY)
                     .target(ITEM_ENTITY_TARGET)
